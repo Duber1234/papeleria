@@ -20,7 +20,11 @@ class Productos extends CI_Controller {
 	 */
 	public function index()
 	{
+		 $head['usernm'] = "DUBER";
+        $head['title'] = 'Customers';
+		$this->load->view('fixed/header', $head);
 		$this->load->view('productos/index');
+		$this->load->view('fixed/footer');
 	}
 	public function pr()
 	{
