@@ -201,7 +201,7 @@
                 echo 'active';
             } ?>">
                 <a href="<?php echo base_url(); ?>dashboard/"> <i class="icon-dashboard"></i><span
-                            class="menu-title">Principal</span></a>
+                            class="menu-title">Principal Gloria a Dios</span></a>
             </li>
 <!--- HEAD ----->
 
