@@ -1,0 +1,10 @@
+CREATE TABLE IF NOT EXISTS `papeleria`.`productos` (
+  `id_producto` INT(11) NOT NULL AUTO_INCREMENT,
+  `nombre` VARCHAR(100) NULL DEFAULT NULL,
+  `cantidad` INT(11) NULL DEFAULT NULL,
+  `precio_fabrica` INT(11) NULL DEFAULT NULL,
+  `precio_venta` INT(11) NULL DEFAULT NULL,
+  `foto` VARCHAR(100) NULL DEFAULT NULL,
+  PRIMARY KEY (`id_producto`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;

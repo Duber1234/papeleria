@@ -18,8 +18,55 @@ class Welcome extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
+
+	public function __construct()
+    {
+        parent::__construct();
+        $this->load->model('productos_model', 'productos');
+       
+    }
 	public function index()
 	{
-		$this->load->view('welcome_message');
+		$head['usernm'] = "DUBER";
+        $head['title'] = 'Customers';
+
+		$this->load->view('fixed/header', $head);
+		$this->load->view('welcome_message.php');
+		$this->load->view('fixed/footer');
 	}
+
+	public function load_list()
+    {
+        $list = $this->productos->get_datatables(0);
+        $data = array();
+        $no = $this->input->post('start');
+        foreach ($list as $producto) {
+            $no++;
+
+            $row = array();
+            $row[] = $no;
+            $row[] = $producto->id_producto;
+			$row[] = $producto->nombre;
+			$row[] = $producto->cantidad;
+			$row[] = "$ ".number_format($producto->precio_fabrica,0,",",".");
+			$row[] = "$ ".number_format($producto->precio_venta,0,",",".");
+			$row[] = $producto->foto;
+            //$row[] = '<a href="customers/view?id=' . $customers->id . '">' . $customers->name ." ". $customers->unoapellido. '</a>';
+			
+			
+            //$row[] = $customers->nomenclatura . ' ' . $customers->numero1 . $customers->adicionauno.' Nº '.$customers->numero2.$customers->adicional2.' - '.$customers->numero3;
+			//$row[] = '<span class="st-'.$customers->usu_estado. '">' .$customers->usu_estado. '</span>';
+            //$row[] = '<a href="customers/view?id=' . $customers->id . '" class="btn btn-info btn-sm"><span class="icon-eye"></span>  '.$this->lang->line('View').'</a> <a href="customers/edit?id=' . $customers->id . '" class="btn btn-primary btn-sm"><span class="icon-pencil"></span>  '.$this->lang->line('Edit').'</a> <a href="#" data-object-id="' . $customers->id . '" class="btn btn-danger btn-sm delete-object"><span class="icon-bin"></span></a>';
+            $data[] = $row;
+        }
+
+        $output = array(
+            "draw" => $_POST['draw'],
+            "recordsTotal" => $this->productos->count_all(0),
+            "recordsFiltered" => $this->productos->count_filtered(0),
+            "data" => $data,
+        );
+        //output to json format
+        echo json_encode($output);
+    }
 }
