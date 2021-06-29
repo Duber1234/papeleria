@@ -1,10 +1,49 @@
+-- MySQL Workbench Forward Engineering
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+
+-- -----------------------------------------------------
+-- Schema papeleria
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
+-- Schema papeleria
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `papeleria` DEFAULT CHARACTER SET utf8 ;
+USE `papeleria` ;
+
+-- -----------------------------------------------------
+-- Table `papeleria`.`productos`
+-- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `papeleria`.`productos` (
-  `id_producto` INT(11) NOT NULL AUTO_INCREMENT,
-  `nombre` VARCHAR(100) NULL DEFAULT NULL,
-  `cantidad` INT(11) NULL DEFAULT NULL,
-  `precio_fabrica` INT(11) NULL DEFAULT NULL,
-  `precio_venta` INT(11) NULL DEFAULT NULL,
-  `foto` VARCHAR(100) NULL DEFAULT NULL,
+  `id_producto` INT NOT NULL AUTO_INCREMENT,
+  `nombre` VARCHAR(100) NULL,
+  `cantidad` INT NULL,
+  `precio_fabrica` INT NULL,
+  `precio_venta` INT NULL,
+  `foto` VARCHAR(100) NULL,
   PRIMARY KEY (`id_producto`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `papeleria`.`ventas`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `papeleria`.`ventas` (
+  `id_venta` INT NOT NULL AUTO_INCREMENT,
+  `cantidad` INT NULL,
+  `precio_fabrica` INT NULL,
+  `precio_venta` INT NULL,
+  `fecha` DATETIME NULL,
+  `cliente` VARCHAR(45) NULL,
+  `id_producto` INT NOT NULL,
+  PRIMARY KEY (`id_venta`),
+  INDEX `fk_ventas_productos_idx` (`id_producto` ASC) )
+ENGINE = InnoDB;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
