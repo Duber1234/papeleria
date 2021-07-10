@@ -200,7 +200,7 @@
             <li class="nav-item <?php if ($this->uri->segment(1) == "dashboard") {
                 echo 'active';
             } ?>">
-                <a href="<?php echo base_url(); ?>dashboard/"> <i class="icon-dashboard"></i><span
+                <a href="<?php echo base_url(); ?>"> <i class="icon-dashboard"></i><span
                             class="menu-title">Principal Gloria a Dios</span></a>
             </li>
 <!--- HEAD ----->
@@ -217,7 +217,7 @@
                             data-original-title="Sales"
                             class="icon-ellipsis icon-ellipsis"></i>
                 </li>
-                <li class="nav-item has-sub <?php if ($this->uri->segment(1) == "invoices" OR $this->uri->segment(1) == "quote") {
+                <li class="nav-item has-sub <?php if ($this->uri->segment(1) == "productos" OR $this->uri->segment(1) == "quote") {
                     echo ' open';
                 } ?>">
                     <a href=""> <i class="icon-plus"></i> <span
@@ -228,7 +228,7 @@
                     <i class="icon-arrow"></i></span></a>
                     <ul class="menu-content">
 						<li>
-                            <a href="<?php echo base_url(); ?>invoices/apertura">Apertura</a>
+                            <a href="<?php echo base_url(); ?>productos/agregar">Agregar Productos</a>
                         </li>
                         <li>
                             <a href="<?php echo base_url(); ?>invoices/apertura">Apertura</a>

@@ -5,6 +5,9 @@
 
             <div class="message"></div>
         </div>
+        <div id="notificaciones">
+            
+        </div>
         <div class="grid_3 grid_4 animated fadeInRight">
             <h5>Productos</h5>
             <div class="row">
@@ -63,6 +66,7 @@
             </div>
         </div>
         <hr>
+
         <div class="table-responsive">
             <table id="productstable" class="display" cellspacing="0" width="100%">
                 <thead>
@@ -71,9 +75,12 @@
 					<th>ID</th>
                     <th>nombre</th>
                     <th>cantidad</th>
+                    <?php if($mostrar_precio_fabrica==1){ ?>
                     <th>precio_fabrica</th>
+                    <?php } ?>
                     <th>precio_venta</th>
                     <th>foto</th>
+                    <th>Acciones</th>
                     
                 </tr>
                 </thead>
@@ -86,14 +93,20 @@
                     <th>ID</th>
                     <th>nombre</th>
                     <th>cantidad</th>
+                    <?php if($mostrar_precio_fabrica==1){ ?>
                     <th>precio_fabrica</th>
+                    <?php } ?>
                     <th>precio_venta</th>
                     <th>foto</th>
+                    <th>Acciones</th>
                 </tr>
                 </tfoot>
             </table>
         </div>
+        <input type="checkbox" id="mostrar_precio_fabrica" style="cursor: pointer;" onclick="ocultar_precio_fabrica()" <?= ($mostrar_precio_fabrica==1)? 'checked="true"':'' ?>>&nbsp;Precio Fabrica
+        
     </div>
+
     <input type="hidden" id="dashurl" value="products/prd_stats">
 </article>
 <script type="text/javascript">
@@ -126,6 +139,26 @@
         });
         //miniDash();
     });
+
+    function vender1(link){
+       var id_pr=$(link).data("id-producto");
+
+        $.post(baseurl+"productos/vender1",{'id_pr':id_pr},function(data){
+
+                $("#notificaciones").html('<div id="notify1" class="alert alert-success" style="display:none;"><a href="#" class="close" data-dismiss="alert">&times;</a><div class="message"></div></div>');
+                $("#notify1 .message").html("<strong>" + data.status + "</strong>: " + data.message);
+                $("#notify1").removeClass("alert-danger").addClass("alert-success").fadeIn();
+                $("html, body").scrollTop($("body").offset().top);
+                $("#cantidad-id-"+id_pr).html(data.cantidad_producto);
+
+        },"json");
+    }
+    function ocultar_precio_fabrica(){
+            var mostrar_precio_fabrica=$("#mostrar_precio_fabrica").prop('checked');
+            $.post(baseurl+"productos/desabilitar_precio_fabrica",{'mostrar_precio_fabrica':mostrar_precio_fabrica},function (){
+                    location.reload();
+            },"json");                        
+    }
 </script>
 <div id="delete_model" class="modal fade">
     <div class="modal-dialog">
