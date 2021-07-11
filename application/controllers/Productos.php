@@ -34,7 +34,7 @@ class Productos extends CI_Controller {
 		$this->load->view('fixed/footer');
 	}
 	public function guardar(){
-		$data['nombre']=$this->input->post('nombre_producto');
+		$data['nombre']=ucwords(strtolower($this->input->post('nombre_producto')));
 		$data['precio_fabrica']=$this->input->post('precio_fabrica');
 		$data['precio_venta']=$this->input->post('precio_venta');
 		$data['cantidad']=$this->input->post('cantidad');
