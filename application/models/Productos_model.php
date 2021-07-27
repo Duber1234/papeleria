@@ -75,7 +75,7 @@ class Productos_model extends CI_Model
         }*/
 
         $this->_get_datatables_query();
-        
+        $this->db->limit($this->input->post('length'), $this->input->post('start'));
         $query = $this->db->get();
         return $query->result();
     }  
