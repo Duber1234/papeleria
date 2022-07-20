@@ -71,4 +71,28 @@ class Productos extends CI_Controller {
 		$this->db->update("usuarios",$data,array("id_usuario"=>1));
 		echo json_encode(array("status"=>"enviado"));
 	}
+	public function prox_ped(){
+		$id_producto=$this->input->post('id');
+		$sel=$this->input->post('sel');
+		if($sel=="false"){
+			$sel=null;
+		}else{
+			$sel=1;
+		}
+		$this->db->update("productos",array("prox_pedido"=>$sel),array("id_producto"=>$id_producto));
+	}
+	public function get_prod(){
+
+		$producto =$this->db->get_where("productos",array("id_producto"=>$_POST['id']))->row();
+		echo json_encode($producto);
+	}
+	public function editar(){
+		$data=array();
+		$data['nombre']=$_POST['nombre_producto'];
+		$data['cantidad']=$_POST['cantidad'];
+		$data['precio_fabrica']=$_POST['precio_fabrica'];
+		$data['precio_venta']=$_POST['precio_venta'];
+		$this->db->update("productos",$data,array("id_producto"=>$_POST['id_prod']));
+		echo json_encode(array("status"=>"ok"));
+	}
 }

@@ -197,11 +197,24 @@
     <div class="main-menu-content">
         <ul id="main-menu-navigation" data-menu="menu-navigation" class="navigation navigation-main">
 
-            <li class="nav-item <?php if ($this->uri->segment(1) == "dashboard") {
+            <li class="nav-item <?php if ($this->uri->segment(1) == null) {
                 echo 'active';
             } ?>">
                 <a href="<?php echo base_url(); ?>"> <i class="icon-dashboard"></i><span
                             class="menu-title">Principal Gloria a Dios</span></a>
+               
+            </li>
+             <li class="nav-item <?php if ($this->uri->segment(1) == "productos") {
+                echo 'active';
+            } ?>">
+                <a href="<?php echo base_url(); ?>productos/agregar"> <i class="icon-plus"></i><span
+                            class="menu-title">Agregar Producto</span></a>
+            </li>
+             <li class="nav-item <?php if ($this->uri->segment(1) == "ventas") {
+                echo 'active';
+            } ?>">
+                <a href="<?php echo base_url(); ?>ventas"> <i class="icon-money"></i><span
+                            class="menu-title">Ventas</span></a>
             </li>
 <!--- HEAD ----->
 
@@ -209,7 +222,7 @@
 
        
 			<!--apertura-->
-			
+			<?php /* ?>
                 <li class="navigation-header"><span
                             data-i18n="nav.category.support">Cobranza</span><i
                             data-toggle="tooltip"
@@ -259,7 +272,7 @@
                         </li>
                     </ul>
                 </li>
-			
+			<?php */?>
         </ul>
 		
 		

@@ -56,8 +56,14 @@ class Welcome extends CI_Controller {
 			$row[] = '<span id="precio-venta-id-'.$producto->id_producto.'">$ '.number_format($producto->precio_venta,0,",",".").'</span>';
 			
 			$row[] = $producto->foto;
+			$str="";
+			if(!empty($producto->prox_pedido)){
+				$str="checked='true'";
+			}
+			$row[] = "<input type='checkbox' data-id-producto='".$producto->id_producto."' class='cl-ck-f' style='cursor:pointer' ".$str." />";
+			
             //$row[] = '<a href="customers/view?id=' . $customers->id . '">' . $customers->name ." ". $customers->unoapellido. '</a>';
-			$row[] = '<a style="color:white" data-id-producto="'.$producto->id_producto.'" onclick="vender1(this)" class="btn btn-info btn-sm"><span class="icon-usd"></span>&nbspVender 1</a>&nbsp<a href="ventas/vender1?id=' . $producto->id_producto . '" class="btn btn-info btn-sm"><span class="icon-shopping-cart"></span>&nbspAgregar</a>';
+			$row[] = '<a style="color:white" data-id-producto="'.$producto->id_producto.'" onclick="vender1(this)" class="btn btn-info btn-sm"><span class="icon-usd"></span>&nbspVender 1</a>&nbsp<a href="#" data-id-producto="' . $producto->id_producto . '" class="btn btn-success btn-sm btn-add-p"><span class="icon-pencil"></span>&nbspEditar</a>';
 			
             //$row[] = $customers->nomenclatura . ' ' . $customers->numero1 . $customers->adicionauno.' Nº '.$customers->numero2.$customers->adicional2.' - '.$customers->numero3;
 			//$row[] = '<span class="st-'.$customers->usu_estado. '">' .$customers->usu_estado. '</span>';
