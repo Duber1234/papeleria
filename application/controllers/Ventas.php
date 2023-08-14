@@ -49,7 +49,7 @@ class Ventas extends CI_Controller {
 
             $row = array();
             $x= new DateTime($venta->fecha);
-           	$row[] = utf8_encode(strftime("%A,".$x->format("d")." de %B del ".$x->format("Y"), strtotime($venta->fecha)))."-<u>".$x->format("g").":".$x->format("s")." ".$x->format("a")."</u>";
+           	$row[] = utf8_encode(strftime("%A,".$x->format("d")." de %B del ".$x->format("Y"), strtotime($venta->fecha)))."-<u>".$x->format("g").":".$x->format("i")." ".$x->format("a")."</u>";
             $producto=$this->db->get_where("productos",array("id_producto"=>$venta->id_producto))->row();
             
             $row[] = $venta->cantidad;
