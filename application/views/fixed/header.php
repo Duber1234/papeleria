@@ -172,7 +172,7 @@
         <div>
             <div class="dropdown profile-element"> <span>
                             <img alt="image" class="img-circle "
-                                 src="<?php echo base_url('userfiles/employee/') ?>">
+                                 src="<?php echo base_url('userfiles/employee/user.png') ?>">
                              </span>
                 <a data-toggle="dropdown" class="dropdown-toggle block" href="#" aria-expanded="false">
                     <span class="clear white">  <span
