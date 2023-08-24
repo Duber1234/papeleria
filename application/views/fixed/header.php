@@ -85,7 +85,7 @@
                 <li class="nav-item mobile-menu hidden-md-up float-xs-left"><a
                             class="nav-link nav-menu-main menu-toggle hidden-xs"><i class="icon-menu5 font-large-1"></i></a>
                 </li>
-                <li class="nav-item"><a href="<?php echo base_url() ?>dashboard/" class="navbar-brand nav-link"><img
+                <li class="nav-item"><a href="<?php echo base_url() ?>welcome/" class="navbar-brand nav-link"><img
                                 alt="branding logo" src="<?php echo base_url(); ?>userfiles/theme/logo-header.png"
                                 data-expand="<?php echo base_url(); ?>userfiles/theme/logo-header.png"
                                 data-collapse="<?php echo base_url(); ?>assets/images/logo/logo-80x80.png"
