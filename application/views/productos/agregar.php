@@ -51,8 +51,18 @@
                     </div>
                     
                 </div>
-                      <input type="button" onclick="calcular_precios()" class="btn btn-success margin-bottom"
-                               value="Calcular" data-loading-text="Calcular"><span id="ganancia">&nbsp;Ganancia :</span>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label" for="name">Ganancia</label>
+
+                    <div class="col-sm-2">
+                        <input type="number" name="" id="in_porcentaje" class="form-control margin-bottom" placeholder="Porcentaje Calculo" value="10">
+                        
+                    </div>
+                    <div class="col-sm-8">%  <input type="button" onclick="calcular_precios()" class="btn btn-success margin-bottom"
+                               value="Calcular" data-loading-text="Calcular"> <small>Recuerda que esto es solo para el calculo, puedes cambiar el precio del producto si lo deseas</small></div>
+                    
+                </div>
+                     
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label" for="name">Precio Fabrica</label>
 
@@ -93,7 +103,8 @@
         var precio_caja=$("#precio_caja").val();
         var cantidad=$("#cantidad").val();
         var fabrica=precio_caja/cantidad;
-        var precio_venta=((fabrica*20)/100)+fabrica;
+        var porcentaje=$("#in_porcentaje").val();
+        var precio_venta=((fabrica*porcentaje)/100)+fabrica;
         var ganancia =precio_venta-fabrica;
         $("#precio_fabrica").val(Math.round(fabrica));
         $("#precio_venta").val(Math.round(precio_venta));

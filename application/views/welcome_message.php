@@ -84,6 +84,7 @@
                     <th>precio_fabrica</th>
                     <?php } ?>
                     <th>precio_venta</th>
+                    <th>Ganancia *1</th>
                     <th>foto</th>
                     <th>Prox.pedido</th>
                     <th>Acciones</th>
@@ -103,6 +104,7 @@
                     <th>precio_fabrica</th>
                     <?php } ?>
                     <th>precio_venta</th>
+                    <th>Ganancia *1</th>
                     <th>foto</th>
                     <th>Prox.pedido</th>
                     <th>Acciones</th>

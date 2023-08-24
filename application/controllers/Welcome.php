@@ -54,6 +54,7 @@ class Welcome extends CI_Controller {
 				$row[] = '<span id="precio-fabrica-id-'.$producto->id_producto.'">$ '.number_format($producto->precio_fabrica,0,",",".").'</span>';
 			}
 			$row[] = '<span id="precio-venta-id-'.$producto->id_producto.'">$ '.number_format($producto->precio_venta,0,",",".").'</span>';
+			$row[] = '$ '.number_format(($producto->precio_venta-$producto->precio_fabrica),0,",",".").'</span>';
 			
 			$row[] = $producto->foto;
 			$str="";
