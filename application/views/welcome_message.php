@@ -58,7 +58,8 @@
                                 <div class="media">
                                     <div class="media-body text-xs-left">
                                         <h3 class="cyan" id="dash_2"></h3>
-                                        <span>Total</span>
+                                        <span>Total Mes Actual<?= ' : $ '.number_format(($total_mes_actual[0]['total']),0,",",".") ?></span><br>
+                                        <span>Total Mes Anterior<?= ' : $ '.number_format(($total_mes_anterior[0]['total']),0,",",".") ?></span>
                                     </div>
                                     <div class="media-right media-middle">
                                         <i class="icon-stats-bars22 cyan font-large-2 float-xs-right"></i>

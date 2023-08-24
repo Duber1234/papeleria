@@ -23,7 +23,7 @@ class Productos_model extends CI_Model
 
     var $table = 'productos';	
     var $column_order = array('id_producto', 'nombre','cantidad', 'precio_fabrica', 'precio_venta'); //set column field database for datatable orderable
-    var $column_search = array('id_producto', 'nombre','cantidad', 'precio_fabrica', 'precio_venta'); //Establecer base de datos de campo de columna para la tabla de datos
+    var $column_search = array('id_producto', 'nombre'); //Establecer base de datos de campo de columna para la tabla de datos
     var $order = array('id_producto' => 'desc'); // default order
 	
     public function __construct()

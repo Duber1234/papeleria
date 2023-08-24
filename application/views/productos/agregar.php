@@ -47,7 +47,7 @@
 
                     <div class="col-sm-10">
                         <input id="precio_caja" type="text" placeholder="Precio Caja"
-                               class="form-control margin-bottom" name="precio_caja">
+                               class="form-control margin-bottom" name="precio_caja" onkeyup="formatNumber(this)">
                     </div>
                     
                 </div>
@@ -55,7 +55,7 @@
                     <label class="col-sm-2 col-form-label" for="name">Ganancia</label>
 
                     <div class="col-sm-2">
-                        <input type="number" name="" id="in_porcentaje" class="form-control margin-bottom" placeholder="Porcentaje Calculo" value="10">
+                        <input type="number" name="" id="in_porcentaje" class="form-control margin-bottom" placeholder="Porcentaje Calculo" value="20">
                         
                     </div>
                     <div class="col-sm-8">%  <input type="button" onclick="calcular_precios()" class="btn btn-success margin-bottom"
@@ -68,7 +68,7 @@
 
                     <div class="col-sm-10">
                         <input type="text" id="precio_fabrica" placeholder="precio_fabrica"
-                               class="form-control margin-bottom  required" name="precio_fabrica">
+                               class="form-control margin-bottom  required" name="precio_fabrica" onkeyup="formatNumber(this)">
                     </div>
                     
                 </div>
@@ -77,7 +77,7 @@
 
                     <div class="col-sm-10">
                         <input type="text" id="precio_venta" placeholder="precio_venta"
-                               class="form-control margin-bottom  required" name="precio_venta">
+                               class="form-control margin-bottom  required" name="precio_venta" onkeyup="formatNumber(this)">
                     </div>
                     
                 </div>
@@ -101,13 +101,24 @@
 <script type="text/javascript">
     function calcular_precios(){
         var precio_caja=$("#precio_caja").val();
+        precio_caja=precio_caja.replace(".","");
         var cantidad=$("#cantidad").val();
         var fabrica=precio_caja/cantidad;
         var porcentaje=$("#in_porcentaje").val();
         var precio_venta=((fabrica*porcentaje)/100)+fabrica;
         var ganancia =precio_venta-fabrica;
-        $("#precio_fabrica").val(Math.round(fabrica));
-        $("#precio_venta").val(Math.round(precio_venta));
+        var formattedValue = new Intl.NumberFormat().format(Math.round(fabrica));
+
+        $("#precio_fabrica").val(formattedValue);
+        formattedValue = new Intl.NumberFormat().format(Math.round(precio_venta));
+        $("#precio_venta").val(formattedValue);
         $("#ganancia").html("ganancia "+Math.round(ganancia));
     }
+    function formatNumber(input) {
+  var value = input.value.replace(/\D/g, ''); // Eliminar todo excepto los dígitos
+            var formattedValue = new Intl.NumberFormat().format(value);
+            input.value = formattedValue;
+
+
+        }
 </script>

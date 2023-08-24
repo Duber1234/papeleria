@@ -31,6 +31,14 @@ class Welcome extends CI_Controller {
         $head['title'] = 'Principal';
         $usuario=$this->db->get_where("usuarios",array("id_usuario"=>"1"))->row();
         $data['mostrar_precio_fabrica']=$usuario->precio_fabrica;
+
+        $data['total_mes_actual']=$this->db->query("select sum(precio_venta - precio_fabrica ) as total from ventas where fecha >='".date("Y-m")."-01' and fecha<='".date("Y-m-t")."'")->result_array();
+
+	    $fechaActual = new DateTime(); // Obtiene la fecha y hora actual
+		$fechaActual->modify('first day of last month'); // Cambia a la fecha del primer día del mes anterior
+		$ultimoDiaMesAnterior = $fechaActual->format('Y-m-t'); // Obtiene el último día del mes anterior
+		$data['total_mes_anterior']=$this->db->query("select sum(precio_venta - precio_fabrica ) as total from ventas where fecha >='".$fechaActual->format("Y-m")."-01' and fecha<='".$fechaActual->format("Y-m-t")."'")->result_array();
+        
 		$this->load->view('fixed/header', $head);
 		$this->load->view('welcome_message.php',$data);
 		$this->load->view('fixed/footer');
