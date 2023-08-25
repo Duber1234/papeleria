@@ -101,12 +101,15 @@
 <script type="text/javascript">
     function calcular_precios(){
         var precio_caja=$("#precio_caja").val();
-        precio_caja=precio_caja.replace(".","");
+        precio_caja = precio_caja.replace(/\./g, "");
+        
         var cantidad=$("#cantidad").val();
         var fabrica=precio_caja/cantidad;
+
         var porcentaje=$("#in_porcentaje").val();
         var precio_venta=((fabrica*porcentaje)/100)+fabrica;
         var ganancia =precio_venta-fabrica;
+
         var formattedValue = new Intl.NumberFormat().format(Math.round(fabrica));
 
         $("#precio_fabrica").val(formattedValue);

@@ -57,6 +57,8 @@ class Productos extends CI_Controller {
 		$data['fecha']=$fecha->format("Y-m-d H:i:s");
 		$data['cliente']="Cliente";
 		$data['id_producto']=$producto->id_producto;
+		$data['nombre_producto']=$producto->nombre;
+		$data['cliente']=$_POST['id_cl'];
 		$this->db->insert("ventas",$data);
 
 		echo json_encode(array('status' => 'Success','cantidad_producto'=>$cantidad_producto, 'message' => 'Se vendio <b><i>'.$producto->nombre."</i></b>, <b>1</b> cantidad "));

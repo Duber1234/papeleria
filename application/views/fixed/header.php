@@ -210,6 +210,18 @@
                 <a href="<?php echo base_url(); ?>productos/agregar"> <i class="icon-plus"></i><span
                             class="menu-title">Agregar Producto</span></a>
             </li>
+            <li class="nav-item <?php if ($this->uri->segment(1) == "clientes") {
+                echo 'active';
+            } ?>">
+                <a href="<?php echo base_url(); ?>clientes/agregar"> <i class="icon-plus"></i><i class="icon-group"></i><span
+                            class="menu-title">Agregar Clientes</span></a>
+            </li>
+            <li class="nav-item <?php if ($this->uri->segment(1) == "clientes") {
+                echo 'active';
+            } ?>">
+                <a href="<?php echo base_url(); ?>clientes/"> <i class="icon-group"></i><span
+                            class="menu-title">Ver Clientes</span></a>
+            </li>
              <li class="nav-item <?php if ($this->uri->segment(1) == "ventas") {
                 echo 'active';
             } ?>">

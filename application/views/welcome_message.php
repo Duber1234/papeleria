@@ -73,6 +73,20 @@
         </div>
         <hr>
 
+            <div style="width: 100%;text-align: center;">
+                <div>  <label>Cliente</label> </div>
+                 
+                    <select name="clientes" style="width:70%" id="clientes" class="form-control">
+                    <option value="">-</option>
+                <?php
+                    foreach ($clientes as $row) {
+                        $row->n_documento=str_replace(".","", $row->n_documento);
+                        $texto=$row->nombre_cl." - ".$row->n_documento;
+                        echo "<option value='$row->id'>$texto</option>";
+                    }
+                    ?>
+                </select>
+            </div>
         <div class="table-responsive">
             <table id="productstable" class="display" cellspacing="0" width="100%">
                 <thead>
@@ -155,7 +169,7 @@ function calcular_precios(){
         $("#ganancia").html("ganancia "+Math.round(ganancia));
     }
     $(document).ready(function () {
-
+$("#clientes").select2();
         //datatables
         table = $('#productstable').DataTable({
 
@@ -183,8 +197,8 @@ function calcular_precios(){
 
     function vender1(link){
        var id_pr=$(link).data("id-producto");
-
-        $.post(baseurl+"productos/vender1",{'id_pr':id_pr},function(data){
+       var id_cl=$("#clientes").val();
+        $.post(baseurl+"productos/vender1",{'id_pr':id_pr,'id_cl':id_cl},function(data){
 
                 $("#notificaciones").html('<div id="notify1" class="alert alert-success" style="display:none;"><a href="#" class="close" data-dismiss="alert">&times;</a><div class="message"></div></div>');
                 $("#notify1 .message").html("<strong>" + data.status + "</strong>: " + data.message);

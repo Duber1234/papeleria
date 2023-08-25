@@ -54,12 +54,20 @@ class Ventas extends CI_Controller {
             
             $row[] = $venta->cantidad;
 			$row[] = $venta->id_producto;
-			$row[]= $producto->nombre;
+			$row[]= $venta->nombre_producto;
 			$row[] = "$ ".number_format($venta->precio_fabrica,0,",",".");
 			$row[] = "$ ".number_format($venta->precio_venta,0,",",".");
 		$val=$venta->precio_venta-$venta->precio_fabrica;
 			$row[] = "$ ".number_format($val,0,",",".");
-			
+			if($venta->cliente!=0){
+				$cliente=$this->db->get_where("clientes",array("id"=>$venta->cliente))->row();
+				$datos="";
+				foreach ($cliente as $key1 => $value1) {
+					$datos.=$value1."\n";
+				}
+				$venta->cliente="<a href='#' title='".$datos."'>".$cliente->nombre_cl."</a>";
+			}
+			$row[] = $venta->cliente;
             $data[] = $row;
         }
 

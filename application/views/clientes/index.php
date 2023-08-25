@@ -1,3 +1,8 @@
+<style type="text/css">
+    .cl-ck-f:hover{
+     transform: scale(4);
+}
+</style>
 <article class="content">
     <div class="card card-block">
         <div id="notify" class="alert alert-success" style="display:none;">
@@ -9,7 +14,7 @@
             
         </div>
         <div class="grid_3 grid_4 animated fadeInRight">
-            <h5>Productos</h5>
+            <h5>Clientes</h5>
             <div class="row">
 
                 <div class="col-xl-4 col-lg-6 col-xs-6">
@@ -53,7 +58,7 @@
                                 <div class="media">
                                     <div class="media-body text-xs-left">
                                         <h3 class="cyan" id="dash_2"></h3>
-                                        <span>Total</span>
+                                        <span>Clientes</span>
                                     </div>
                                     <div class="media-right media-middle">
                                         <i class="icon-stats-bars22 cyan font-large-2 float-xs-right"></i>
@@ -68,18 +73,20 @@
         <hr>
 
         <div class="table-responsive">
-            <table id="productstable" class="display" cellspacing="0" width="100%">
+            <table id="table1" class="display" cellspacing="0" width="100%">
                 <thead>
                 <tr>
-                    <th>fecha</th>
-                     
-                    <th>cantidad</th>
-                    <th>id producto</th>
-                    <th>nombre</th>
-                    <th>precio fabria</th>
-                    <th>precio_venta</th>
-                    <th>ganancia</th>
-                    <th>cliente</th>
+                     <th>#</th>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>T. Doc.</th>
+                    <th>N° Doc</th>
+                    <th>Direccion</th>
+                    <th>Correo</th>
+                    <th>Celular 1</th>
+                    <th>Celular 2</th>
+                    <th>Celular 3</th>
+                    <th>Acciones</th>
                     
                 </tr>
                 </thead>
@@ -88,32 +95,35 @@
 
                 <tfoot>
                 <tr>
-                
-                    <th>fecha</th>
-                    
-                    <th>cantidad</th>
-                    <th>id producto</th>
-                    <th>nombre</th>
-                    <th>precio fabria</th>
-                    <th>precio_venta</th>
-                    <th>ganancia</th>
-                    <th>cliente</th>
+                   <th>#</th>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>T. Doc.</th>
+                    <th>N° Doc</th>
+                    <th>Direccion</th>
+                    <th>Correo</th>
+                    <th>Celular 1</th>
+                    <th>Celular 2</th>
+                    <th>Celular 3</th>
+                    <th>Acciones</th>
                 </tr>
                 </tfoot>
             </table>
         </div>
-       
+        
         
     </div>
 
     
 </article>
-
 <script type="text/javascript">
+
+    var table;
+    
     $(document).ready(function () {
 
         //datatables
-        table = $('#productstable').DataTable({
+        table = $('#table1').DataTable({
 
             "processing": true, //Feature control the processing indicator.
             "serverSide": true, //Feature control DataTables' server-side processing mode.
@@ -121,7 +131,7 @@
 
             // Load data for the table's content from an Ajax source
             "ajax": {
-                "url": "<?php echo site_url('ventas/load_list')?>",
+                "url": "<?php echo site_url('clientes/get_list_ajax')?>",
                 "type": "POST"
             },
 
@@ -136,4 +146,6 @@
         });
         //miniDash();
     });
+
+   
 </script>
