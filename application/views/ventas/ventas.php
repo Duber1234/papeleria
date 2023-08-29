@@ -75,6 +75,7 @@
                      
                     <th>cantidad</th>
                     <th>id producto</th>
+                    <th>Codigo</th>
                     <th>nombre</th>
                     <th>precio fabria</th>
                     <th>precio_venta</th>
@@ -93,6 +94,7 @@
                     
                     <th>cantidad</th>
                     <th>id producto</th>
+                    <th>Codigo</th>
                     <th>nombre</th>
                     <th>precio fabria</th>
                     <th>precio_venta</th>

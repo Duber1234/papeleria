@@ -93,6 +93,7 @@
                 <tr>
                     <th>#</th>
 					<th>ID</th>
+                    <th>Codigo</th>
                     <th>nombre</th>
                     <th>cantidad</th>
                     <?php if($mostrar_precio_fabrica==1){ ?>
@@ -113,6 +114,7 @@
                 <tr>
                    <th>#</th>
                     <th>ID</th>
+                    <th>Codigo</th>
                     <th>nombre</th>
                     <th>cantidad</th>
                     <?php if($mostrar_precio_fabrica==1){ ?>

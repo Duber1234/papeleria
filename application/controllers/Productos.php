@@ -35,13 +35,20 @@ class Productos extends CI_Controller {
 	}
 	public function guardar(){
 		$data['nombre']=ucwords(strtolower($this->input->post('nombre_producto')));
-		$data['precio_fabrica']=$this->input->post('precio_fabrica');
-		$data['precio_venta']=$this->input->post('precio_venta');
+		$data['codigo']=$this->input->post('codigo_producto');
+		$data['precio_fabrica']=str_replace(".", "", $this->input->post('precio_fabrica')); 
+		$data['precio_venta']=str_replace(".", "", $this->input->post('precio_venta'));
 		$data['cantidad']=$this->input->post('cantidad');
 
-		$this->db->insert("productos",$data);
+		$pr=$this->db->get_where('productos',array("codigo"=>$data['codigo']))->row();
+		if (isset($pr)) {
+			echo json_encode(array('status' => 'Error', 'message' => "el codigo de producto ya existe"));	
+		}else{
+			$this->db->insert("productos",$data);
 
-		echo json_encode(array('status' => 'Success', 'message' => 'Producto Guardado'));
+			echo json_encode(array('status' => 'Success', 'message' => 'Producto Guardado'));	
+		}
+		
 	}
 	public function vender1(){
 		$cantidad_producto=0;
@@ -58,6 +65,7 @@ class Productos extends CI_Controller {
 		$data['cliente']="Cliente";
 		$data['id_producto']=$producto->id_producto;
 		$data['nombre_producto']=$producto->nombre;
+		$data['codigo']=$producto->codigo;
 		$data['cliente']=$_POST['id_cl'];
 		$this->db->insert("ventas",$data);
 

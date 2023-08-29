@@ -54,6 +54,7 @@ class Ventas extends CI_Controller {
             
             $row[] = $venta->cantidad;
 			$row[] = $venta->id_producto;
+			$row[] = $venta->codigo;
 			$row[]= $venta->nombre_producto;
 			$row[] = "$ ".number_format($venta->precio_fabrica,0,",",".");
 			$row[] = "$ ".number_format($venta->precio_venta,0,",",".");

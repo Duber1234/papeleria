@@ -56,6 +56,7 @@ class Welcome extends CI_Controller {
             $row = array();
             $row[] = $no;
             $row[] = $producto->id_producto;
+            $row[] = $producto->codigo;
 			$row[] = $producto->nombre;
 			$row[] = '<span id="cantidad-id-'.$producto->id_producto.'">'.$producto->cantidad.'</span>';
 			if($usuario->precio_fabrica==1){ 
