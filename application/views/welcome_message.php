@@ -239,7 +239,7 @@ $("#clientes").select2();
             </div>
             <div class="modal-footer">
                 <input type="hidden" id="object-id" value="">
-                <input type="hidden" id="action-url" value="products/delete_i">
+                <input type="hidden" id="action-url" value="productos/delete_i">
                 <button type="button" data-dismiss="modal" class="btn btn-primary"
                         id="delete-confirm">Eliminar</button>
                 <button type="button" data-dismiss="modal"

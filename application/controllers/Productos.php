@@ -105,4 +105,13 @@ class Productos extends CI_Controller {
 		$this->db->update("productos",$data,array("id_producto"=>$_POST['id_prod']));
 		echo json_encode(array("status"=>"ok"));
 	}
+public function delete_i(){
+	$id = $this->input->post('deleteid');
+	if($this->db->delete('productos', array('id_producto' => $id))){
+		echo json_encode(array('status' => 'Success', 'message' => 'eliminado'));
+	}else{
+		echo json_encode(array('status' => 'Error', 'message' => $this->lang->line('ERROR')));
+	}
+}
+
 }
