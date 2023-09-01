@@ -151,10 +151,12 @@
         prod_id=$(this).data("id-producto");
         console.log(prod_id);
         $.post(baseurl+"productos/get_prod",{'id':prod_id},function(data){
+            $("#codigo_producto").val(data.codigo);
             $("#nombre_producto").val(data.nombre);
             $("#cantidad").val(data.cantidad);
             $("#precio_fabrica").val(data.precio_fabrica);
             $("#precio_venta").val(data.precio_venta);
+            $("#descripcion").val(data.descripcion);
             $("#id_prod").val(prod_id);
             $("#modal-agregar-stock").modal("show");
         },'json');
@@ -196,20 +198,20 @@ $("#clientes").select2();
         });
         //miniDash();
     });
-
+var id_pr=0;
+var id_cl=0;
     function vender1(link){
-       var id_pr=$(link).data("id-producto");
-       var id_cl=$("#clientes").val();
-        $.post(baseurl+"productos/vender1",{'id_pr':id_pr,'id_cl':id_cl},function(data){
-
-                $("#notificaciones").html('<div id="notify1" class="alert alert-success" style="display:none;"><a href="#" class="close" data-dismiss="alert">&times;</a><div class="message"></div></div>');
-                $("#notify1 .message").html("<strong>" + data.status + "</strong>: " + data.message);
-                $("#notify1").removeClass("alert-danger").addClass("alert-success").fadeIn();
-                $("html, body").scrollTop($("body").offset().top);
-                $("#cantidad-id-"+id_pr).html(data.cantidad_producto);
-
-        },"json");
+        
+         id_pr=$(link).data("id-producto");
+         id_cl=$("#clientes").val();
+         $("#n_prod_mod").text( $("#cantidad-id-"+id_pr).data("nombre"));
+         $("#descripcion_prod_mod").text( $("#cantidad-id-"+id_pr).data("descripcion"));
+         
+       $("#vender-modal").modal("show");
+       
+       
     }
+
     function ocultar_precio_fabrica(){
             var mostrar_precio_fabrica=$("#mostrar_precio_fabrica").prop('checked');
             $.post(baseurl+"productos/desabilitar_precio_fabrica",{'mostrar_precio_fabrica':mostrar_precio_fabrica},function (){
@@ -221,9 +223,25 @@ $("#clientes").select2();
         var d1=$("#data_form").serialize();
         $.post(baseurl+"productos/editar",d1,function(data){
             if(data.status=="ok"){
-                location.reload();
+                table.ajax.reload();
+                $("#modal-agregar-stock").modal("hide");
+            }else{
+                alert("codigo ya existe");
             }
         },'json');
+    });
+    $(document).on("click",'#vender-confirm',function(e){
+           $.post(baseurl+"productos/vender1",{'id_pr':id_pr,'id_cl':id_cl},function(data){
+
+                $("#notificaciones").html('<div id="notify1" class="alert alert-success" style="display:none;"><a href="#" class="close" data-dismiss="alert">&times;</a><div class="message"></div></div>');
+                $("#notify1 .message").html("<strong>" + data.status + "</strong>: " + data.message);
+                $("#notify1").removeClass("alert-danger").addClass("alert-success").fadeIn();
+                $("html, body").scrollTop($("body").offset().top);
+                $("#vender-modal").modal("hide");
+                table.ajax.reload();
+
+
+        },"json");
     });
 </script>
 <div id="delete_model" class="modal fade">
@@ -248,6 +266,30 @@ $("#clientes").select2();
         </div>
     </div>
 </div>
+<div id="vender-modal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Vender</h4>
+            </div>
+            <div class="modal-body">
+                <p>¿Estas seguro de realizar la accion de vender 1 cantidad sobre este producto?</p>
+               <i><b> <p id="n_prod_mod"></p></b></i>
+               <p id="descripcion_prod_mod"></p>
+            </div>
+            <div class="modal-footer">
+                <input type="hidden" id="object-id" value="">
+                
+                <button type="button"  class="btn btn-primary"
+                        id="vender-confirm">Vender 1</button>
+                <button type="button" data-dismiss="modal"
+                        class="btn">cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
 <div id="modal-agregar-stock" class="modal fade">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -260,7 +302,15 @@ $("#clientes").select2();
             <div class="modal-body">
                 <form method="post" action="#" id="data_form" class="form-horizontal">
 
-                
+                <div class="form-group row">
+
+                    <label class="col-sm-3 col-form-label" for="name">Codigo</label>
+
+                    <div class="col-sm-9">
+                        <input type="text" placeholder="codigo producto"
+                               class="form-control margin-bottom  required" id="codigo_producto" name="codigo_producto">
+                    </div>
+                </div>
 
                 <div class="form-group row">
 
@@ -300,6 +350,14 @@ $("#clientes").select2();
                                class="form-control margin-bottom  required" name="precio_venta">
                     </div>
                     
+                </div>
+                <div class="form-group row">
+
+                    <label class="col-sm-3 col-form-label" for="name">Descripción</label>
+
+                    <div class="col-sm-9">
+                        <textarea class="form-control margin-bottom" maxlength="200" name="descripcion" id="descripcion"></textarea>
+                    </div>
                 </div>
            
                 

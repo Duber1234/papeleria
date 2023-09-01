@@ -55,7 +55,12 @@ class Ventas extends CI_Controller {
             $row[] = $venta->cantidad;
 			$row[] = $venta->id_producto;
 			$row[] = $venta->codigo;
-			$row[]= $venta->nombre_producto;
+			$cursor="";
+			if($venta->descripcion!="" && $venta->descripcion!=null){
+            	$cursor="style='cursor:pointer'";
+            }
+			$row[] = "<i ".$cursor."  title='".$venta->descripcion."'><b>".$venta->nombre_producto."</b></i>";
+			
 			$row[] = "$ ".number_format($venta->precio_fabrica,0,",",".");
 			$row[] = "$ ".number_format($venta->precio_venta,0,",",".");
 		$val=$venta->precio_venta-$venta->precio_fabrica;

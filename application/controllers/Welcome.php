@@ -57,8 +57,12 @@ class Welcome extends CI_Controller {
             $row[] = $no;
             $row[] = $producto->id_producto;
             $row[] = $producto->codigo;
-			$row[] = $producto->nombre;
-			$row[] = '<span id="cantidad-id-'.$producto->id_producto.'">'.$producto->cantidad.'</span>';
+            $cursor="";
+            if($producto->descripcion!="" && $producto->descripcion!=null){
+            	$cursor="style='cursor:pointer'";
+            }
+			$row[] = "<i ".$cursor."  title='".$producto->descripcion."'><b>".$producto->nombre."</b></i>";
+			$row[] = '<span data-nombre="'.$producto->nombre.'" data-descripcion="'.$producto->descripcion.'" id="cantidad-id-'.$producto->id_producto.'">'.$producto->cantidad.'</span>';
 			if($usuario->precio_fabrica==1){ 
 				$row[] = '<span id="precio-fabrica-id-'.$producto->id_producto.'">$ '.number_format($producto->precio_fabrica,0,",",".").'</span>';
 			}
