@@ -10,7 +10,7 @@
 
             <form method="post" id="data_form" class="form-horizontal">
 
-                <h5>Agregar Nuevo Producto</h5>
+                <h5><?=$title ?></h5>
                 <hr>
                 <div class="form-group row">
 

@@ -3,18 +3,18 @@
 
     $('[data-toggle="datepicker"]').datepicker({autoHide: true, format: '<?php echo $this->config->item('dformat2'); ?>'});
     $('[data-toggle="datepicker"]').datepicker('setDate', new Date());
-    $('#sdate').datepicker({autoHide: true, format: '<?php echo $this->config->item('dformat2'); ?>'});
-    $('#sdate').datepicker('setDate', '<?php echo  DateTime::createFromFormat('Y-m-d', date('Y-m-d', strtotime('-30 days', strtotime(date('Y-m-d')))))->format("Y-m-d"); ?>');
+    $('#sdate').datepicker({autoHide: true, format: 'dd-mm-yyyy'});
+    $('#sdate').datepicker('setDate', '<?php echo  DateTime::createFromFormat('d-m-Y', date('d-m-Y', strtotime('-30 days', strtotime(date('d-m-Y')))))->format("d-m-Y"); ?>');
 
-    $('#sdate2').datepicker({autoHide: true, format: '<?php echo $this->config->item('dformat2'); ?>'});
-    $('#sdate2').datepicker('setDate', '<?php echo DateTime::createFromFormat("Y-m-d", date('Y-m-d'))->format("Y-m-d"); ?>');
+    $('#sdate2').datepicker({autoHide: true, format: 'dd-mm-yyyy'});
+    $('#sdate2').datepicker('setDate', '<?php echo DateTime::createFromFormat("d-m-Y", date('d-m-Y'))->format("d-m-Y"); ?>');
 
 
-    $('.date30').datepicker('setDate', '<?php echo DateTime::createFromFormat('Y-m-d', date('Y-m-d', strtotime('-30 days', strtotime(date('Y-m-d')))))->format("Y-m-d"); ?>');
+    $('.date30').datepicker('setDate', '<?php echo DateTime::createFromFormat('d-m-Y', date('d-m-Y', strtotime('-30 days', strtotime(date('d-m-Y')))))->format("d-m-Y"); ?>');
 
     if(typeof editar_datepickerts === 'function') {
         //ejecucion de funcion para cambiar fechas como sdate3 o como se le coloque pues se esta ejecutando al momento oportuno para hacer la edicion que se desee; solo es crear esta funcion en donde se quiera manejar fechas y listo mirar el ejemplo de views/support/tickets.php
-        editar_datepickerts('<?php echo $this->config->item('dformat2'); ?>','<?php echo DateTime::createFromFormat('Y-m-d', date('Y-m-d', strtotime('-30 days', strtotime(date('Y-m-d')))))->format("Y-m-d"); ?>');    
+        editar_datepickerts('<?php echo $this->config->item('dformat2'); ?>','<?php echo DateTime::createFromFormat('d-m-Y', date('d-m-Y', strtotime('-30 days', strtotime(date('d-m-Y')))))->format("d-m-Y"); ?>');    
     }
     
 </script>

@@ -14,7 +14,7 @@
             
         </div>
         <div class="grid_3 grid_4 animated fadeInRight">
-            <h5>Productos</h5>
+            <h5><?=$title ?></h5>
             <div class="row">
 
                 <div class="col-xl-4 col-lg-6 col-xs-6">

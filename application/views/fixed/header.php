@@ -210,18 +210,42 @@
                 <a href="<?php echo base_url(); ?>productos/agregar"> <i class="icon-plus"></i><span
                             class="menu-title">Agregar Producto</span></a>
             </li>
-            <li class="nav-item <?php if ($this->uri->segment(1) == "clientes") {
-                echo 'active';
-            } ?>">
-                <a href="<?php echo base_url(); ?>clientes/agregar"> <i class="icon-plus"></i><i class="icon-group"></i><span
-                            class="menu-title">Agregar Clientes</span></a>
-            </li>
-            <li class="nav-item <?php if ($this->uri->segment(1) == "clientes") {
-                echo 'active';
-            } ?>">
-                <a href="<?php echo base_url(); ?>clientes/"> <i class="icon-group"></i><span
-                            class="menu-title">Ver Clientes</span></a>
-            </li>
+
+<li class="nav-item has-sub <?php if ($this->uri->segment(1) == "clientes") {
+                    echo ' open';
+                } ?>">
+                 <a href=""> <i class="icon-group"></i><span
+                                class="menu-title">Clientes</span><i
+                                class="fa arrow"></i> </a>
+                                <ul class="menu-content">
+
+                <li>
+                    <a href="<?php echo base_url(); ?>clientes/agregar"><?php echo $this->lang->line('') ?>Agregar Clientes</a>
+                </li>
+                <li>
+                    <a href="<?php echo base_url(); ?>clientes/">Administrar Clientes</a>
+                </li>
+         
+        </ul>
+</li>
+<li class="nav-item has-sub <?php if ($this->uri->segment(1) == "proveedores") {
+                    echo ' open';
+                } ?>">
+                 <a href=""> <i class="icon-group"></i><span
+                                class="menu-title">Proveedores</span><i
+                                class="fa arrow"></i> </a>
+                                <ul class="menu-content">
+
+                <li>
+                    <a href="<?php echo base_url(); ?>proveedores/agregar"><?php echo $this->lang->line('') ?>Agregar Proveedor</a>
+                </li>
+                <li>
+                    <a href="<?php echo base_url(); ?>proveedores/">Administrar Proveedor</a>
+                </li>
+         
+        </ul>
+</li>
+
              <li class="nav-item <?php if ($this->uri->segment(1) == "ventas") {
                 echo 'active';
             } ?>">
